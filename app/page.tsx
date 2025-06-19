@@ -8,6 +8,7 @@ import Explanation from "./Explanation";
 import Comparison from "./comparison";
 import Demo from "./Demo";
 import Footer from "./Footer";
+import Invite from "./Invite";
 
 const merriweather = Merriweather({
   weight: ["300", "400", "700", "900"],
@@ -20,18 +21,27 @@ export default function Home() {
     <div className="relative min-h-screen w-full flex flex-col items-center justify-center px-2 py-0 overflow-auto">
       <Navbar />
       <div className="w-full flex flex-col items-center justify-center min-h-screen">
-        <div className="w-full flex flex-col md:flex-row items-center justify-center gap-8 md:gap-0" style={{minHeight: '80vh'}}>
+        <div id="home" className="w-full flex flex-col md:flex-row items-center justify-center gap-8 md:gap-0" style={{minHeight: '80vh'}}>
           <div className="flex-1 flex items-center justify-center">
             <LandingPage />
           </div>
         </div>
-        <Explanation />
-        <Comparison />
-        <div className="w-full flex flex-col items-center justify-center mt-2">
+        <div id="explanation">
+          <Explanation />
+        </div>
+        <div id="comparison">
+          <Comparison />
+        </div>
+        <div id="features" className="w-full flex flex-col items-center justify-center mt-2">
           <Features />
         </div>
-        <Demo />
-        <div className="w-full flex flex-col items-center justify-center mt-8">
+        <div id="demo">
+          <Demo />
+        </div>
+        <div id="invite">
+          <Invite />
+        </div>
+        <div id="applications" className="w-full flex flex-col items-center justify-center mt-8">
           <Applications />
         </div>
       </div>

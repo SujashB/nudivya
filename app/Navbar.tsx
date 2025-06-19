@@ -4,7 +4,11 @@ import Link from "next/link";
 
 const navItems = [
   { label: "Home", href: "#home" },
-  { label: "Discover the Cores", href: "#cores" },
+  { label: "Explanation", href: "#explanation" },
+  { label: "Comparison", href: "#comparison" },
+  { label: "Features", href: "#features" },
+  { label: "Demo", href: "#demo" },
+  { label: "Invite", href: "#invite" },
   { label: "Applications", href: "#applications" },
 ];
 
@@ -28,12 +32,12 @@ const Navbar = () => (
           NUVIDYA
         </div>
       </div>
-      <div className="flex gap-6 items-center">
+      <div className="flex gap-4 items-center">
         {navItems.map((item) => (
           <a
             key={item.label}
             href={item.href}
-            className="relative text-lg font-bold text-[#3a2a13] px-2 py-1 transition-all duration-200 hover:text-[#bfa76a] hover:drop-shadow-[0_0_8px_#bfa76a] after:absolute after:left-0 after:bottom-0 after:w-0 hover:after:w-full after:h-[2px] after:bg-[#bfa76a] after:transition-all after:duration-300 after:rounded-full"
+            className="relative text-sm font-medium text-[#3a2a13] px-2 py-1"
             style={{ fontFamily: 'Merriweather, serif' }}
           >
             {item.label}
