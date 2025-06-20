@@ -1,7 +1,6 @@
 import React from "react";
 import { Merriweather } from "next/font/google";
 import { motion } from "framer-motion";
-import Image from "next/image";
 
 const merriweather = Merriweather({
   weight: ["300", "400", "700", "900"],
@@ -75,85 +74,94 @@ const useCases = [
   }
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.3
-    }
-  }
-};
-
-const cardVariants = {
-  hidden: { 
-    opacity: 0,
-    y: 20
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: [0.43, 0.13, 0.23, 0.96] as const
-    }
-  }
-};
+const radius = 180; // px
+const centerX = 250;
+const centerY = 250;
+const cardW = 170;
+const cardH = 170;
 
 const Applications = () => {
   return (
-    <motion.div
+    <motion.div 
+      className={`w-full flex flex-col items-center justify-center py-24 ${merriweather.className}`}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true }}
-      className={`w-full flex flex-col items-center justify-center py-8 ${merriweather.className}`}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ staggerChildren: 0.2 }}
     >
-      <motion.div
-        className="w-[90vw] max-w-5xl flex flex-col items-center justify-center rounded-3xl bg-white/10 backdrop-blur-md shadow-2xl px-6 py-8 mb-4 transition-all duration-500 mt-8 border-2 neon-glass"
+      <motion.h1 
+        className="text-4xl md:text-5xl font-extrabold text-[#3a2a13] mb-16 text-center drop-shadow ancient-futuristic-title"
+        variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7 } } }}
       >
-        <h1 className="text-3xl font-bold text-[#3a2a13] text-center mb-8">
-          How People Use Nuvidya
-        </h1>
-
+        How People Use Nuvidya
+      </motion.h1>
+      <motion.div 
+        className="relative w-[500px] h-[500px] flex items-center justify-center mx-auto"
+        variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.15 } } }}
+      >
+        {/* Central Node */}
         <motion.div
-          variants={containerVariants}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 flex-grow w-full"
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full bg-[#fffbe6] shadow-xl flex items-center justify-center border-4 border-[#e7d7b6] z-10"
+          variants={{ hidden: { opacity: 0, scale: 0.8 }, visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } } }}
         >
-          {useCases.map((useCase, index) => (
+          <span className="text-3xl font-bold text-[#3a2a13]">Nuvidya</span>
+        </motion.div>
+        {/* Lines from center to each card */}
+        {useCases.map((_, i) => {
+          const angle = (i / useCases.length) * 2 * Math.PI;
+          const x = centerX + radius * Math.cos(angle);
+          const y = centerY + radius * Math.sin(angle);
+          return (
+            <svg key={i} className="absolute left-0 top-0 pointer-events-none" width={500} height={500} style={{zIndex: 1}}>
+              <line
+                x1={centerX}
+                y1={centerY}
+                x2={x}
+                y2={y}
+                stroke="#bfa76a"
+                strokeWidth={3}
+                opacity={0.5}
+              />
+            </svg>
+          );
+        })}
+        {/* Stationary Cards */}
+        {useCases.map((useCase, i) => {
+          const angle = (i / useCases.length) * 2 * Math.PI;
+          const x = centerX + radius * Math.cos(angle) - cardW / 2;
+          const y = centerY + radius * Math.sin(angle) - cardH / 2;
+          return (
             <motion.div
               key={useCase.title}
-              variants={cardVariants}
-              className="border rounded-lg p-4 bg-[#f4d03f]/5 backdrop-blur-[2px] relative"
+              className="absolute"
+              style={{
+                width: cardW,
+                height: cardH,
+                left: x,
+                top: y
+              }}
+              variants={{ hidden: { opacity: 0, scale: 0.9 }, visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } } }}
             >
-              <div className="text-3xl mb-3">{useCase.icon}</div>
-              <h3 className="text-lg font-bold text-[#3a2a13] mb-2">
-                {useCase.title}
-              </h3>
-              <p className="text-[#5a442b] italic mb-2 text-sm">{useCase.whoFor}</p>
-              {useCase.description.map((line, i) => (
-                <p key={i} className="text-[#3a2a13] mb-1 text-sm">
-                  {line}
-                </p>
-              ))}
+              <div className="border rounded-lg p-4 bg-[#f4d03f]/5 backdrop-blur-[2px] shadow-xl flex flex-col items-center justify-center w-full h-full">
+                <div className="text-3xl mb-3">{useCase.icon}</div>
+                <h3 className="text-lg font-bold text-[#3a2a13] mb-2 text-center">{useCase.title}</h3>
+                <p className="text-[#5a442b] italic mb-2 text-sm text-center">{useCase.whoFor}</p>
+                {useCase.description.map((line, i) => (
+                  <p key={i} className="text-[#3a2a13] mb-1 text-sm text-center">
+                    {line}
+                  </p>
+                ))}
+              </div>
             </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Greek Symbols */}
-        <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center opacity-15 pointer-events-none">
-          <div className="text-4xl mb-4 text-[#3a2a13]">Σ</div>
-          <div className="text-4xl mb-4 text-[#3a2a13]">Θ</div>
-          <div className="text-4xl mb-4 text-[#3a2a13]">Ψ</div>
-          <div className="text-4xl text-[#3a2a13]">Δ</div>
-        </div>
-
-        <style jsx>{`
-          .neon-glass {
-            box-shadow: 0 0 0 2px transparent, 0 0 16px 4px #BEC5A488, 0 0 32px 8px #BEC5A444;
-          }
-        `}</style>
+          );
+        })}
       </motion.div>
+      <style jsx>{`
+        .ancient-futuristic-title {
+          text-shadow: 0 0 8px #fffbe6, 0 0 2px #bfa76a;
+          letter-spacing: 0.08em;
+        }
+      `}</style>
     </motion.div>
   );
 };

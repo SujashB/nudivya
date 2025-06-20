@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import { Merriweather } from "next/font/google";
+import { motion } from "framer-motion";
 
 const merriweather = Merriweather({
   weight: ["300", "400", "700", "900"],
@@ -86,84 +87,96 @@ export default function Demo() {
   const orbSpacing = lineWidth / (orbCount - 1);
 
   return (
-    <section className={`w-[90vw] max-w-5xl min-h-[50vh] flex flex-col items-center justify-center px-4 py-8 bg-white/10 backdrop-blur-md rounded-3xl shadow-2xl border-2 neon-glass mt-8 mb-6 ${merriweather.className}`}>
-      <h2 className="text-2xl md:text-3xl font-bold text-[#1F456E] mb-4 text-center drop-shadow">How Nuvidya Processes a Question</h2>
-      <div className="w-full flex flex-col items-center justify-center">
-        <div className="w-full max-w-xl bg-white/60 rounded-xl shadow px-4 py-3 mb-6 text-base text-[#1F456E] text-center font-medium">
-          {example}
-        </div>
-        <div className="relative flex flex-col items-center w-full max-w-4xl mb-6" style={{ minHeight: 100 }}>
-          {/* SVG line only */}
-          <svg
-            width={lineWidth + 80}
-            height={70}
-            style={{
-              position: "absolute",
-              top: 33, // center of orbs
-              left: 0,
-              right: 0,
-              margin: "0 auto",
-              zIndex: 0,
-              pointerEvents: "none"
-            }}
-          >
-            <line
-              x1={25}
-              y1={35}
-              x2={lineWidth + 55}
-              y2={35}
-              stroke="#1F456E"
-              strokeWidth={8}
-              strokeLinecap="round"
-              opacity={0.95}
-            />
-          </svg>
-          {/* Orbs and blue dot below */}
-          <div className="flex flex-row items-end justify-center gap-0 w-full" style={{ position: "relative", zIndex: 1, width: lineWidth + 80 }}>
-            {coreSteps.map((core, idx) => (
-              <div key={core.symbol} className="flex flex-col items-center" style={{ marginLeft: idx === 0 ? 0 : orbSpacing - 48, marginRight: 0 }}>
-                <div
-                  className={`w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center text-xl md:text-2xl font-bold shadow-lg border-3 transition-all duration-500 mb-2 ${stage === idx ? 'ring-3 ring-[#3ecfff] scale-110' : ''}`}
-                  style={{
-                    background: `radial-gradient(circle, ${core.color} 60%, #fff 100%)`,
-                    borderColor: core.color,
-                    boxShadow: `0 0 20px 6px ${core.color}88, 0 0 40px 12px #3ecfff44`,
-                    color: '#1F456E',
-                  }}
-                >
-                  {core.symbol}
-                </div>
-                {/* Progress dot below the orb */}
-                {stage === idx && (
-                  <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: 3 }}>
-                    <span
-                      style={{
-                        display: 'inline-block',
-                        width: 16,
-                        height: 16,
-                        borderRadius: '50%',
-                        background: '#3ecfff',
-                        boxShadow: '0 0 12px 3px #3ecfff88',
-                        opacity: 0.9,
-                        animation: 'pulse 1.2s infinite alternate'
-                      }}
-                    />
+    <motion.div 
+      className={`w-full flex flex-col items-center justify-center py-24 ${merriweather.className}`}
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.8 }}
+    >
+      <h1 className="text-4xl md:text-5xl font-extrabold text-[#3a2a13] mb-16 text-center drop-shadow ancient-futuristic-title">How Nuvidya Processes a Question</h1>
+      <section className={`w-[90vw] max-w-5xl min-h-[50vh] flex flex-col items-center justify-center px-4 py-8 bg-white/10 backdrop-blur-md rounded-3xl shadow-2xl border-2 neon-glass ${merriweather.className}`}>
+        <div className="w-full flex flex-col items-center justify-center">
+          <div className="w-full max-w-xl bg-white/60 rounded-xl shadow px-4 py-3 mb-6 text-base text-[#1F456E] text-center font-medium">
+            {example}
+          </div>
+          <div className="relative flex flex-col items-center w-full max-w-4xl mb-6" style={{ minHeight: 100 }}>
+            {/* SVG line only */}
+            <svg
+              width={lineWidth + 80}
+              height={70}
+              style={{
+                position: "absolute",
+                top: 33, // center of orbs
+                left: 0,
+                right: 0,
+                margin: "0 auto",
+                zIndex: 0,
+                pointerEvents: "none"
+              }}
+            >
+              <line
+                x1={25}
+                y1={35}
+                x2={lineWidth + 55}
+                y2={35}
+                stroke="#1F456E"
+                strokeWidth={8}
+                strokeLinecap="round"
+                opacity={0.95}
+              />
+            </svg>
+            {/* Orbs and blue dot below */}
+            <div className="flex flex-row items-end justify-center gap-0 w-full" style={{ position: "relative", zIndex: 1, width: lineWidth + 80 }}>
+              {coreSteps.map((core, idx) => (
+                <div key={core.symbol} className="flex flex-col items-center" style={{ marginLeft: idx === 0 ? 0 : orbSpacing - 48, marginRight: 0 }}>
+                  <div
+                    className={`w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center text-xl md:text-2xl font-bold shadow-lg border-3 transition-all duration-500 mb-2 ${stage === idx ? 'ring-3 ring-[#3ecfff] scale-110' : ''}`}
+                    style={{
+                      background: `radial-gradient(circle, ${core.color} 60%, #fff 100%)`,
+                      borderColor: core.color,
+                      boxShadow: `0 0 20px 6px ${core.color}88, 0 0 40px 12px #3ecfff44`,
+                      color: '#1F456E',
+                    }}
+                  >
+                    {core.symbol}
                   </div>
-                )}
-              </div>
-            ))}
+                  {/* Progress dot below the orb */}
+                  {stage === idx && (
+                    <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: 3 }}>
+                      <span
+                        style={{
+                          display: 'inline-block',
+                          width: 16,
+                          height: 16,
+                          borderRadius: '50%',
+                          background: '#3ecfff',
+                          boxShadow: '0 0 12px 3px #3ecfff88',
+                          opacity: 0.9,
+                          animation: 'pulse 1.2s infinite alternate'
+                        }}
+                      />
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="w-full max-w-xl min-h-[48px] bg-white/80 rounded-xl shadow px-4 py-3 text-[#1F456E] text-base text-center font-medium transition-all duration-500">
+            {stage >= 0 && stage < stepOutputs.length && (
+              <span>{stepOutputs[stage]}</span>
+            )}
+            {stage === 7 && (
+              <span><b>Nuvidya's Answer:</b> This verse speaks to the profound state of inner harmony achieved when one transcends desire and anger. Nuvidya interprets this as a call to self-mastery: true peace arises not from external conditions, but from knowing and aligning with one's own soul. When mind and spirit are in balance, free from the turbulence of craving and aversion, a deeper, unshakable peace becomes possible—one that is rooted in self-awareness and the wisdom to act with compassion and clarity in the world.</span>
+            )}
           </div>
         </div>
-        <div className="w-full max-w-xl min-h-[48px] bg-white/80 rounded-xl shadow px-4 py-3 text-[#1F456E] text-base text-center font-medium transition-all duration-500">
-          {stage >= 0 && stage < stepOutputs.length && (
-            <span>{stepOutputs[stage]}</span>
-          )}
-          {stage === 7 && (
-            <span><b>Nuvidya's Answer:</b> This verse speaks to the profound state of inner harmony achieved when one transcends desire and anger. Nuvidya interprets this as a call to self-mastery: true peace arises not from external conditions, but from knowing and aligning with one's own soul. When mind and spirit are in balance, free from the turbulence of craving and aversion, a deeper, unshakable peace becomes possible—one that is rooted in self-awareness and the wisdom to act with compassion and clarity in the world.</span>
-          )}
-        </div>
-      </div>
+      </section>
       <style jsx>{`
+        .ancient-futuristic-title {
+          text-shadow: 0 0 8px #fffbe6, 0 0 2px #bfa76a;
+          letter-spacing: 0.08em;
+        }
         .neon-glass {
           box-shadow: 0 0 0 2px transparent, 0 0 16px 4px #BEC5A488, 0 0 32px 8px #BEC5A444;
         }
@@ -172,6 +185,6 @@ export default function Demo() {
           100% { opacity: 1; transform: scale(1.15); }
         }
       `}</style>
-    </section>
+    </motion.div>
   );
 }

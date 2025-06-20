@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Merriweather } from "next/font/google";
+import { motion } from "framer-motion";
 
 const merriweather = Merriweather({
   weight: ["300", "400", "700", "900"],
@@ -66,6 +67,29 @@ const coreFeatures = [
   }
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 20, scale: 0.98 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  },
+};
+
 const Features = () => {
   const [expanded, setExpanded] = useState(Array(coreFeatures.length).fill(false));
 
@@ -76,8 +100,9 @@ const Features = () => {
   const renderCore = (core) => {
     const idx = coreFeatures.findIndex(c => c.title === core.title);
     return (
-      <div
+      <motion.div
         key={core.title}
+        variants={cardVariants}
         className="w-full bg-white/10 backdrop-blur-md rounded-2xl p-5 flex flex-col items-center shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl text-center"
       >
         <div 
@@ -125,12 +150,18 @@ const Features = () => {
             {core.desc}
           </div>
         )}
-      </div>
+      </motion.div>
     );
   };
 
   return (
-    <div className={`w-full flex flex-col items-center justify-center px-2 py-24 ${merriweather.className}`}>
+    <motion.div 
+      className={`w-full flex flex-col items-center justify-center px-2 py-24 ${merriweather.className}`}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
+      variants={containerVariants}
+    >
       <h1 className="text-4xl md:text-5xl font-extrabold text-[#3a2a13] mb-16 text-center drop-shadow ancient-futuristic-title">7 New Agentic Cores, Inspired by Chakras, Powered by Logos</h1>
       
       <div className="w-[90vw] max-w-5xl flex flex-col items-center gap-8">
@@ -163,7 +194,7 @@ const Features = () => {
           animation: fadeIn 0.3s ease-out forwards;
         }
       `}</style>
-    </div>
+    </motion.div>
   );
 };
 

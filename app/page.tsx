@@ -26,16 +26,17 @@ export default function Home() {
       <ParallaxBackground />
       <div style={{ position: 'relative', zIndex: 2, width: '100%' }}>
         <Hero />
-        <Spacer />
+        <Spacer imageName="spacer_sun.png" />
         <Explanation />
-        <Spacer />
+        <Spacer imageName="spacer_lambda.png" />
         <Features />
-        <Spacer />
+        <Spacer imageName="spacer_rho.png" />
         <Comparison />
-        <Spacer />
+        <Spacer imageName="spacer.png" />
         <Applications />
-        <Spacer />
+        <Spacer imageName="spacer_sun.png" />
         <Demo />
+        <Spacer imageName="spacer_lambda.png" />
         <Invite />
       </div>
       <Footer />

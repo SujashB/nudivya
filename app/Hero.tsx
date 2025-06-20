@@ -34,7 +34,12 @@ const Hero: React.FC = () => {
       }}
     >
       <div className="w-[90vw] max-w-5xl flex flex-col md:flex-row items-center justify-center">
-        <div className="flex-1 flex flex-col justify-center items-start text-left pr-8">
+        <motion.div 
+          className="flex-1 flex flex-col justify-center items-start text-left pr-8"
+          variants={containerVariants}
+          initial="hidden"
+          animate="show"
+        >
           <motion.h1
             className="text-6xl md:text-8xl font-extrabold text-[#3a2a13] mb-4 tracking-wide drop-shadow-lg"
             style={{
@@ -42,8 +47,6 @@ const Hero: React.FC = () => {
               textShadow: '0 0 20px rgba(58, 42, 19, 0.3), 0 0 40px rgba(58, 42, 19, 0.2)'
             }}
             variants={childVariants}
-            initial="hidden"
-            animate="show"
           >
             NUVIDYA
           </motion.h1>
@@ -53,12 +56,10 @@ const Hero: React.FC = () => {
               textShadow: '0 0 10px rgba(58, 42, 19, 0.2), 0 0 20px rgba(58, 42, 19, 0.1)'
             }}
             variants={childVariants}
-            initial="hidden"
-            animate="show"
           >
             Nuvidya is a peer-to-peer AI network which shares intelligence without gatekeepers, and is designed to evolve through the people who use it.
           </motion.div>
-        </div>
+        </motion.div>
         <div className="flex-1 flex items-center justify-end mt-8 md:mt-0">
           <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 shadow-lg w-[500px] h-[540px]">
             <ChakraNetLarge />

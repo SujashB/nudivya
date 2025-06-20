@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { Merriweather } from "next/font/google";
+import { motion } from "framer-motion";
 
 const data = [
   ["OpenAI / GPT", "Transformer, RLHF, API Cloud", "❌ Limited/Closed", "Centralized, Fast", "Productization, Monetization"],
@@ -24,24 +25,59 @@ const merriweather = Merriweather({
   display: "swap",
 });
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.3 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
+
 const Comparison = () => (
-  <section className={`w-full flex flex-col items-center justify-center px-2 py-0 min-h-screen ${merriweather.className}`}>
-    <h1 className="text-4xl md:text-5xl font-extrabold text-[#3a2a13] mb-16 text-center drop-shadow ancient-futuristic-title">How is Nuvidya Different?</h1>
-    <div className="w-[90vw] max-w-5xl flex flex-col items-center justify-center rounded-3xl bg-white/10 backdrop-blur-md shadow-2xl px-6 py-8 mb-4 transition-all duration-500 border-2 neon-glass">
+  <motion.section 
+    className={`w-full flex flex-col items-center justify-center px-2 py-0 min-h-screen ${merriweather.className}`}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, amount: 0.2 }}
+    variants={containerVariants}
+  >
+    <motion.h1 
+      className="text-4xl md:text-5xl font-extrabold text-[#3a2a13] mb-16 text-center drop-shadow ancient-futuristic-title"
+      variants={itemVariants}
+    >
+      How is Nuvidya Different?
+    </motion.h1>
+    <motion.div 
+      className="w-[90vw] max-w-5xl flex flex-col items-center justify-center rounded-3xl bg-white/10 backdrop-blur-md shadow-2xl px-6 py-8 mb-4 transition-all duration-500 border-2 neon-glass"
+      variants={itemVariants}
+    >
       <div className="overflow-x-auto w-full max-w-4xl">
         <table className="min-w-full border-separate border-spacing-y-1 bg-white/10 backdrop-blur-md rounded-xl shadow-lg">
-          <thead>
+          <motion.thead variants={containerVariants}>
             <tr>
               {headers.map((header) => (
-                <th key={header} className="px-3 py-2 bg-white/10 backdrop-blur-md border-b-2 text-[#7c5c2b] text-base font-bold text-center shadow-md ancient-futuristic-title">
+                <motion.th 
+                  key={header} 
+                  className="px-3 py-2 bg-white/10 backdrop-blur-md border-b-2 text-[#7c5c2b] text-base font-bold text-center shadow-md ancient-futuristic-title"
+                  variants={itemVariants}
+                >
                   {header}
-                </th>
+                </motion.th>
               ))}
             </tr>
-          </thead>
-          <tbody>
+          </motion.thead>
+          <motion.tbody variants={containerVariants}>
             {data.map((row, i) => (
-              <tr key={i} className={i === 4 ? "bg-[#e6f7ff]/40 backdrop-blur-md" : "bg-white/10 backdrop-blur-md"}>
+              <motion.tr 
+                key={i} 
+                className={i === 4 ? "bg-[#e6f7ff]/40 backdrop-blur-md" : "bg-white/10 backdrop-blur-md"}
+                variants={itemVariants}
+              >
                 {row.map((cell, j) => (
                   <td
                     key={j}
@@ -51,9 +87,9 @@ const Comparison = () => (
                     {cell}
                   </td>
                 ))}
-              </tr>
+              </motion.tr>
             ))}
-          </tbody>
+          </motion.tbody>
         </table>
       </div>
       <style jsx>{`
@@ -65,8 +101,8 @@ const Comparison = () => (
           box-shadow: 0 0 0 2px transparent, 0 0 16px 4px #BEC5A488, 0 0 32px 8px #BEC5A444;
         }
       `}</style>
-    </div>
-  </section>
+    </motion.div>
+  </motion.section>
 );
 
 export default Comparison; 
