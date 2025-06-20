@@ -26,8 +26,8 @@ const merriweather = Merriweather({
 
 const Comparison = () => (
   <section className={`w-full flex flex-col items-center justify-center px-2 py-0 min-h-screen ${merriweather.className}`}>
-    <div className="w-[90vw] max-w-5xl flex flex-col items-center justify-center rounded-3xl bg-white/10 backdrop-blur-md shadow-2xl px-6 py-8 mb-4 transition-all duration-500 mt-8 border-2 neon-glass">
-      <h1 className="text-3xl md:text-4xl font-bold text-[#3a2a13] mb-6 text-center drop-shadow ancient-futuristic-title">Nuvidya vs. The Rest</h1>
+    <h1 className="text-4xl md:text-5xl font-extrabold text-[#3a2a13] mb-16 text-center drop-shadow ancient-futuristic-title">How is Nuvidya Different?</h1>
+    <div className="w-[90vw] max-w-5xl flex flex-col items-center justify-center rounded-3xl bg-white/10 backdrop-blur-md shadow-2xl px-6 py-8 mb-4 transition-all duration-500 border-2 neon-glass">
       <div className="overflow-x-auto w-full max-w-4xl">
         <table className="min-w-full border-separate border-spacing-y-1 bg-white/10 backdrop-blur-md rounded-xl shadow-lg">
           <thead>
