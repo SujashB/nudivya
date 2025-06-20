@@ -38,6 +38,7 @@ export default function Home() {
         <Demo />
         <Spacer imageName="spacer_lambda.png" />
         <Invite />
+        <Spacer imageName="spacer_sun.png" />
       </div>
       <Footer />
     </div>

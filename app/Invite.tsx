@@ -12,6 +12,7 @@ const merriweather = Merriweather({
 const Invite = () => {
   return (
     <motion.div 
+      id="invite"
       className={`w-full flex flex-col items-center justify-center py-24 ${merriweather.className}`}
       initial="hidden"
       whileInView="visible"
@@ -20,12 +21,19 @@ const Invite = () => {
     >
       <div className="w-[90vw] max-w-5xl flex flex-col md:flex-row items-center justify-center gap-12">
         <motion.div 
-          className="flex-1 text-center md:text-left"
+          className="flex-1 text-center"
           variants={{ hidden: { opacity: 0, x: -50 }, visible: { opacity: 1, x: 0, transition: { duration: 0.8 } } }}
         >
           <h1 className="text-4xl md:text-5xl font-extrabold text-[#3a2a13] mb-6 drop-shadow ancient-futuristic-title">
             Awaken the Network Within
           </h1>
+          <motion.div
+            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.2 } } }}
+          >
+            <button className="bg-[#f4e9d8] text-[#3a2a13] font-bold py-3 px-8 rounded-lg shadow-md border border-[#d1c0a8] hover:bg-[#e9dccb] transition-colors duration-300">
+              Get Started
+            </button>
+          </motion.div>
         </motion.div>
 
         <motion.div 

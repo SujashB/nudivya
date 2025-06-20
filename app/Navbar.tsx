@@ -37,7 +37,7 @@ const Navbar = () => (
           <a
             key={item.label}
             href={item.href}
-            className="relative text-sm font-medium text-[#3a2a13] px-2 py-1"
+            className="relative text-sm font-bold text-[#3a2a13] px-2 py-1"
             style={{ fontFamily: 'Merriweather, serif' }}
           >
             {item.label}

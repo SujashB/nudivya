@@ -95,7 +95,7 @@ export default function Demo() {
       transition={{ duration: 0.8 }}
     >
       <h1 className="text-4xl md:text-5xl font-extrabold text-[#3a2a13] mb-16 text-center drop-shadow ancient-futuristic-title">How Nuvidya Processes a Question</h1>
-      <section className={`w-[90vw] max-w-5xl min-h-[50vh] flex flex-col items-center justify-center px-4 py-8 bg-white/10 backdrop-blur-md rounded-3xl shadow-2xl border-2 neon-glass ${merriweather.className}`}>
+      <section id="demo" className={`w-[90vw] max-w-5xl min-h-[50vh] flex flex-col items-center justify-center px-4 py-8 bg-white/10 backdrop-blur-md rounded-3xl shadow-2xl border-2 neon-glass ${merriweather.className}`}>
         <div className="w-full flex flex-col items-center justify-center">
           <div className="w-full max-w-xl bg-white/60 rounded-xl shadow px-4 py-3 mb-6 text-base text-[#1F456E] text-center font-medium">
             {example}

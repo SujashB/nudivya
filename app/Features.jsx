@@ -155,46 +155,53 @@ const Features = () => {
   };
 
   return (
-    <motion.div 
-      className={`w-full flex flex-col items-center justify-center px-2 py-24 ${merriweather.className}`}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
-      variants={containerVariants}
-    >
-      <h1 className="text-4xl md:text-5xl font-extrabold text-[#3a2a13] mb-16 text-center drop-shadow ancient-futuristic-title">7 New Agentic Cores, Inspired by Chakras, Powered by Logos</h1>
-      
-      <div className="w-[90vw] max-w-5xl flex flex-col items-center gap-8">
-        {/* Top Row */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 w-full">
-          {coreFeatures.slice(0, 3).map(renderCore)}
-        </div>
+    <section id="features" className="w-full py-24 bg-white/5 backdrop-blur-sm">
+      <div className="max-w-5xl mx-auto px-6">
+        <h2 className="text-4xl font-bold text-[#3a2a13] text-center mb-12 drop-shadow">
+          Key Features
+        </h2>
+        <motion.div 
+          className={`w-full flex flex-col items-center justify-center px-2 py-24 ${merriweather.className}`}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={containerVariants}
+        >
+          <h1 className="text-4xl md:text-5xl font-extrabold text-[#3a2a13] mb-16 text-center drop-shadow ancient-futuristic-title">7 New Agentic Cores, Inspired by Chakras, Powered by Logos</h1>
+          
+          <div className="w-[90vw] max-w-5xl flex flex-col items-center gap-8">
+            {/* Top Row */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 w-full">
+              {coreFeatures.slice(0, 3).map(renderCore)}
+            </div>
 
-        {/* Middle Row */}
-        <div className="flex justify-center w-full">
-          {renderCore(coreFeatures[3])}
-        </div>
+            {/* Middle Row */}
+            <div className="flex justify-center w-full">
+              {renderCore(coreFeatures[3])}
+            </div>
 
-        {/* Bottom Row */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 w-full">
-          {coreFeatures.slice(4, 7).map(renderCore)}
-        </div>
+            {/* Bottom Row */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 w-full">
+              {coreFeatures.slice(4, 7).map(renderCore)}
+            </div>
+          </div>
+
+          <style jsx>{`
+            .ancient-futuristic-title {
+              text-shadow: 0 0 8px #fffbe6, 0 0 2px #bfa76a;
+              letter-spacing: 0.08em;
+            }
+            @keyframes fadeIn {
+              from { opacity: 0; transform: translateY(-10px); }
+              to { opacity: 1; transform: translateY(0); }
+            }
+            .animate-fadeIn {
+              animation: fadeIn 0.3s ease-out forwards;
+            }
+          `}</style>
+        </motion.div>
       </div>
-
-      <style jsx>{`
-        .ancient-futuristic-title {
-          text-shadow: 0 0 8px #fffbe6, 0 0 2px #bfa76a;
-          letter-spacing: 0.08em;
-        }
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(-10px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fadeIn {
-          animation: fadeIn 0.3s ease-out forwards;
-        }
-      `}</style>
-    </motion.div>
+    </section>
   );
 };
 

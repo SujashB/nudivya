@@ -26,6 +26,7 @@ const Hero: React.FC = () => {
 
   return (
     <div
+      id="home"
       className={`min-h-screen w-full flex flex-col items-center justify-center px-2 py-0 ${merriweather.className}`}
       style={{
         background: 'none',
