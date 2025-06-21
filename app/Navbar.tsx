@@ -8,8 +8,8 @@ const navItems = [
   { label: "Comparison", href: "#comparison" },
   { label: "Features", href: "#features" },
   { label: "Demo", href: "#demo" },
-  { label: "Invite", href: "#invite" },
   { label: "Applications", href: "#applications" },
+  { label: "Invite", href: "#invite" },
 ];
 
 const Navbar = () => (

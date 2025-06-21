@@ -157,9 +157,6 @@ const Features = () => {
   return (
     <section id="features" className="w-full py-24 bg-white/5 backdrop-blur-sm">
       <div className="max-w-5xl mx-auto px-6">
-        <h2 className="text-4xl font-bold text-[#3a2a13] text-center mb-12 drop-shadow">
-          Key Features
-        </h2>
         <motion.div 
           className={`w-full flex flex-col items-center justify-center px-2 py-24 ${merriweather.className}`}
           initial="hidden"

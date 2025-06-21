@@ -29,13 +29,13 @@ export default function Home() {
         <Spacer imageName="spacer_sun.png" />
         <Explanation />
         <Spacer imageName="spacer_lambda.png" />
-        <Features />
-        <Spacer imageName="spacer_rho.png" />
         <Comparison />
+        <Spacer imageName="spacer_rho.png" />
+        <Features />
         <Spacer imageName="spacer.png" />
-        <Applications />
-        <Spacer imageName="spacer_sun.png" />
         <Demo />
+        <Spacer imageName="spacer_sun.png" />
+        <Applications />
         <Spacer imageName="spacer_lambda.png" />
         <Invite />
         <Spacer imageName="spacer_sun.png" />

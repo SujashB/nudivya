@@ -40,6 +40,7 @@ const itemVariants = {
 
 const Comparison = () => (
   <motion.section 
+    id="comparison"
     className={`w-full flex flex-col items-center justify-center px-2 py-0 min-h-screen ${merriweather.className}`}
     initial="hidden"
     whileInView="visible"

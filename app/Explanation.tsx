@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 
 const Explanation = () => (
   <motion.section 
+    id="explanation"
     className="w-full flex flex-col items-center justify-center py-24" 
     style={{ fontFamily: 'Merriweather, serif' }}
     initial={{ opacity: 0, y: 50 }}
