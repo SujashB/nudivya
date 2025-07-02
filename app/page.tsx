@@ -5,6 +5,8 @@ import Navbar from "./Navbar";
 import Hero from "./Hero";
 import ParallaxBackground from "./ParallaxBackground";
 import Features from "./Features";
+import FeaturesGrid from "./FeaturesGrid";
+import EquationsSection from "./EquationsSection";
 import Explanation from "./Explanation";
 import Comparison from "./comparison";
 import Applications from "./Applications";
@@ -12,6 +14,7 @@ import Demo from "./Demo";
 import Footer from "./Footer";
 import Invite from "./Invite";
 import Spacer from "./Spacer";
+import ChakraDemo from "./ChakraDemo";
 
 const merriweather = Merriweather({
   weight: ["300", "400", "700", "900"],
@@ -21,24 +24,32 @@ const merriweather = Merriweather({
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen w-full flex flex-col items-center justify-center px-2 py-0 overflow-auto">
+    <div className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-auto">
       <Navbar />
       <ParallaxBackground />
-      <div style={{ position: 'relative', zIndex: 2, width: '100%' }}>
+      <div style={{ position: 'relative', zIndex: 2, width: '100%' }} className="pt-16 md:pt-20">
         <Hero />
         <Spacer imageName="spacer_sun.png" />
-        <Explanation />
+        <FeaturesGrid />
         <Spacer imageName="spacer_lambda.png" />
-        <Comparison />
+        <Explanation />
         <Spacer imageName="spacer_rho.png" />
+        <div id="equations">
+          <EquationsSection />
+        </div>
+        <Spacer imageName="spacer_sun.png" />
+        <Comparison />
+        <Spacer imageName="spacer_lambda.png" />
         <Features />
         <Spacer imageName="spacer.png" />
         <Demo />
+        <Spacer imageName="spacer_rho.png" />
+        <ChakraDemo />
         <Spacer imageName="spacer_sun.png" />
         <Applications />
         <Spacer imageName="spacer_lambda.png" />
         <Invite />
-        <Spacer imageName="spacer_sun.png" />
+        <Spacer imageName="spacer_rho.png" />
       </div>
       <Footer />
     </div>

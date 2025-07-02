@@ -51,8 +51,14 @@ const ChakraNetLarge = () => {
 
   return (
     <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.2, delay: 1.1, ease: [0.42, 0, 0.58, 1] }} style={{ width: '100%', height: '100%' }}>
-      <div className="flex justify-center items-center w-full py-4" style={{ zIndex: -1, width: 'auto', height: '100%', pointerEvents: 'none' }}>
-        <motion.svg width={500} height={537.5} style={{ maxWidth: "100%" }} initial={{ rotate: 0 }} animate={{ rotate: [0, 2, -2, 0] }} transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}>
+      <div className="flex justify-center items-center w-full h-full py-4" style={{ zIndex: -1, pointerEvents: 'none' }}>
+        <motion.svg 
+          viewBox="0 0 500 537.5" 
+          style={{ width: '100%', height: '100%', maxWidth: '500px', maxHeight: '537.5px' }} 
+          initial={{ rotate: 0 }} 
+          animate={{ rotate: [0, 2, -2, 0] }} 
+          transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+        >
           <NeonGlowDefs />
           {connections.map(([a, b], idx) => {
             const posA = a === "center" ? getCenterPos() : getNodePos(a as number); const posB = b === "center" ? getCenterPos() : getNodePos(b as number);

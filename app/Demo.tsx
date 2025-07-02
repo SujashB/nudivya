@@ -83,86 +83,107 @@ export default function Demo() {
 
   // Layout constants
   const orbCount = coreSteps.length;
-  const lineWidth = 420; // px
-  const orbSpacing = lineWidth / (orbCount - 1);
+  const lineWidth = 420; // Desktop width
 
   return (
     <motion.div 
-      className={`w-full flex flex-col items-center justify-center py-24 ${merriweather.className}`}
+      className={`w-full flex flex-col items-center justify-center py-16 md:py-24 px-4 ${merriweather.className}`}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.8 }}
     >
-      <h1 className="text-4xl md:text-5xl font-extrabold text-[#3a2a13] mb-16 text-center drop-shadow ancient-futuristic-title">How Nuvidya Processes a Question</h1>
-      <section id="demo" className={`w-[90vw] max-w-5xl min-h-[50vh] flex flex-col items-center justify-center px-4 py-8 bg-white/10 backdrop-blur-md rounded-3xl shadow-2xl border-2 neon-glass ${merriweather.className}`}>
+      <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#3a2a13] mb-8 md:mb-16 text-center drop-shadow ancient-futuristic-title px-4">How Nuvidya Processes a Question</h1>
+      <section id="demo" className={`w-full max-w-4xl xl:max-w-5xl min-h-[50vh] flex flex-col items-center justify-center p-4 md:p-8 bg-white/10 backdrop-blur-md rounded-3xl shadow-2xl border-2 neon-glass ${merriweather.className}`}>
         <div className="w-full flex flex-col items-center justify-center">
-          <div className="w-full max-w-xl bg-white/60 rounded-xl shadow px-4 py-3 mb-6 text-base text-[#1F456E] text-center font-medium">
+          <div className="w-full max-w-2xl bg-white/60 rounded-xl shadow px-3 md:px-4 py-3 mb-6 text-sm md:text-base text-[#1F456E] text-center font-medium">
             {example}
           </div>
-          <div className="relative flex flex-col items-center w-full max-w-4xl mb-6" style={{ minHeight: 100 }}>
-            {/* SVG line only */}
-            <svg
-              width={lineWidth + 80}
-              height={70}
-              style={{
-                position: "absolute",
-                top: 33, // center of orbs
-                left: 0,
-                right: 0,
-                margin: "0 auto",
-                zIndex: 0,
-                pointerEvents: "none"
-              }}
-            >
-              <line
-                x1={25}
-                y1={35}
-                x2={lineWidth + 55}
-                y2={35}
-                stroke="#1F456E"
-                strokeWidth={8}
-                strokeLinecap="round"
-                opacity={0.95}
-              />
-            </svg>
-            {/* Orbs and blue dot below */}
-            <div className="flex flex-row items-end justify-center gap-0 w-full" style={{ position: "relative", zIndex: 1, width: lineWidth + 80 }}>
+          
+          {/* Mobile: Vertical layout, Desktop: Horizontal layout */}
+          <div className="block md:hidden w-full mb-6">
+            {/* Mobile vertical layout */}
+            <div className="flex flex-col items-center space-y-3 w-full max-w-sm mx-auto">
               {coreSteps.map((core, idx) => (
-                <div key={core.symbol} className="flex flex-col items-center" style={{ marginLeft: idx === 0 ? 0 : orbSpacing - 48, marginRight: 0 }}>
-                  <div
-                    className={`w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center text-xl md:text-2xl font-bold shadow-lg border-3 transition-all duration-500 mb-2 ${stage === idx ? 'ring-3 ring-[#3ecfff] scale-110' : ''}`}
-                    style={{
-                      background: `radial-gradient(circle, ${core.color} 60%, #fff 100%)`,
-                      borderColor: core.color,
-                      boxShadow: `0 0 20px 6px ${core.color}88, 0 0 40px 12px #3ecfff44`,
-                      color: '#1F456E',
-                    }}
-                  >
-                    {core.symbol}
+                <div key={core.symbol} className={`flex items-center w-full p-3 rounded-lg transition-all duration-500 ${stage === idx ? 'bg-white/20 scale-[1.02]' : 'bg-white/5'}`}>
+                  <div className="flex items-center justify-center mr-3">
+                    <div
+                      className={`w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold shadow-lg border-2 transition-all duration-500 ${stage === idx ? 'ring-2 ring-[#3ecfff] scale-110' : ''}`}
+                      style={{
+                        background: `radial-gradient(circle, ${core.color} 60%, #fff 100%)`,
+                        borderColor: core.color,
+                        boxShadow: `0 0 15px 3px ${core.color}88, 0 0 25px 6px #3ecfff44`,
+                        color: '#1F456E',
+                      }}
+                    >
+                      {core.symbol}
+                    </div>
                   </div>
-                  {/* Progress dot below the orb */}
+                  <div className="flex-1 text-left">
+                    <div className="text-sm font-bold text-[#3a2a13]">{core.name}</div>
+                    <div className="text-xs text-[#3a2a13]/80">{core.desc}</div>
+                  </div>
                   {stage === idx && (
-                    <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: 3 }}>
-                      <span
-                        style={{
-                          display: 'inline-block',
-                          width: 16,
-                          height: 16,
-                          borderRadius: '50%',
-                          background: '#3ecfff',
-                          boxShadow: '0 0 12px 3px #3ecfff88',
-                          opacity: 0.9,
-                          animation: 'pulse 1.2s infinite alternate'
-                        }}
-                      />
+                    <div className="ml-3">
+                      <div className="w-3 h-3 rounded-full bg-[#3ecfff] animate-pulse" />
                     </div>
                   )}
                 </div>
               ))}
             </div>
           </div>
-          <div className="w-full max-w-xl min-h-[48px] bg-white/80 rounded-xl shadow px-4 py-3 text-[#1F456E] text-base text-center font-medium transition-all duration-500">
+
+          {/* Desktop horizontal layout */}
+          <div className="hidden md:flex relative items-center justify-center w-full mb-6" style={{ minHeight: 120 }}>
+            {/* Container for orbs and line */}
+            <div className="relative" style={{ width: `${lineWidth + 60}px`, height: '100px' }}>
+              {/* Background line */}
+              <div 
+                className="absolute"
+                style={{
+                  top: '35px',
+                  left: '30px',
+                  right: '30px',
+                  height: '8px',
+                  backgroundColor: '#1F456E',
+                  borderRadius: '4px',
+                  opacity: 0.95
+                }}
+              />
+              
+              {/* Orbs container */}
+              <div className="absolute inset-0 flex items-start justify-between" style={{ padding: '0 30px' }}>
+                {coreSteps.map((core, idx) => (
+                  <div key={core.symbol} className="flex flex-col items-center">
+                    <div
+                      className={`w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center text-xl md:text-2xl font-bold shadow-lg border-3 transition-all duration-500 ${stage === idx ? 'ring-3 ring-[#3ecfff] scale-110' : ''}`}
+                      style={{
+                        background: `radial-gradient(circle, ${core.color} 60%, #fff 100%)`,
+                        borderColor: core.color,
+                        boxShadow: `0 0 20px 6px ${core.color}88, 0 0 40px 12px #3ecfff44`,
+                        color: '#1F456E',
+                      }}
+                    >
+                      {core.symbol}
+                    </div>
+                    {/* Progress dot below the orb */}
+                    {stage === idx && (
+                      <div className="mt-2 flex justify-center">
+                        <span
+                          className="block w-4 h-4 rounded-full bg-[#3ecfff] animate-pulse"
+                          style={{
+                            boxShadow: '0 0 12px 3px #3ecfff88',
+                          }}
+                        />
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          
+          <div className="w-full max-w-2xl min-h-[60px] md:min-h-[48px] bg-white/80 rounded-xl shadow px-3 md:px-4 py-3 text-[#1F456E] text-sm md:text-base text-center font-medium transition-all duration-500">
             {stage >= 0 && stage < stepOutputs.length && (
               <span>{stepOutputs[stage]}</span>
             )}

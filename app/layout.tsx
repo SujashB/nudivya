@@ -16,6 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Nuvidya - Where Ancient Wisdom Meets Modern Intelligence",
   description: "A peer-to-peer AI network which shares intelligence without gatekeepers",
+  viewport: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
 };
 
 export default function RootLayout({

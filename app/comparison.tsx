@@ -41,23 +41,39 @@ const itemVariants = {
 const Comparison = () => (
   <motion.section 
     id="comparison"
-    className={`w-full flex flex-col items-center justify-center px-2 py-0 min-h-screen ${merriweather.className}`}
+    className={`w-full flex flex-col items-center justify-center px-4 py-16 md:py-24 min-h-screen ${merriweather.className}`}
     initial="hidden"
     whileInView="visible"
     viewport={{ once: true, amount: 0.2 }}
     variants={containerVariants}
   >
     <motion.h1 
-      className="text-4xl md:text-5xl font-extrabold text-[#3a2a13] mb-16 text-center drop-shadow ancient-futuristic-title"
+      className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#3a2a13] mb-8 md:mb-16 text-center drop-shadow ancient-futuristic-title px-4"
       variants={itemVariants}
     >
       How is Nuvidya Different?
     </motion.h1>
     <motion.div 
-      className="w-[90vw] max-w-5xl flex flex-col items-center justify-center rounded-3xl bg-white/10 backdrop-blur-md shadow-2xl px-6 py-8 mb-4 transition-all duration-500 border-2 neon-glass"
+      className="w-full max-w-6xl flex flex-col items-center justify-center rounded-3xl bg-white/10 backdrop-blur-md shadow-2xl p-4 md:px-6 md:py-8 mb-4 transition-all duration-500 border-2 neon-glass"
       variants={itemVariants}
     >
-      <div className="overflow-x-auto w-full max-w-4xl">
+      {/* Mobile view - Cards */}
+      <div className="block lg:hidden w-full">
+        {data.map((row, i) => (
+          <div key={i} className={`mb-4 p-4 rounded-lg ${i === 4 ? "bg-[#e6f7ff]/60" : "bg-white/20"} backdrop-blur-md`}>
+            <h3 className={`font-bold text-lg mb-3 ${i === 4 ? "text-[#1a4a5c]" : "text-[#7c5c2b]"}`}>{row[0]}</h3>
+            <div className="space-y-2 text-sm">
+              <div><span className="font-semibold text-[#7c5c2b]">Technologies:</span> <span className={i === 4 ? "text-[#1a4a5c]" : "text-[#3a2a13]"}>{row[1]}</span></div>
+              <div><span className="font-semibold text-[#7c5c2b]">Open-Source:</span> <span className={i === 4 ? "text-[#1a4a5c]" : "text-[#3a2a13]"}>{row[2]}</span></div>
+              <div><span className="font-semibold text-[#7c5c2b]">Development:</span> <span className={i === 4 ? "text-[#1a4a5c]" : "text-[#3a2a13]"}>{row[3]}</span></div>
+              <div><span className="font-semibold text-[#7c5c2b]">Goal:</span> <span className={i === 4 ? "text-[#1a4a5c]" : "text-[#3a2a13]"}>{row[4]}</span></div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop view - Table */}
+      <div className="hidden lg:block overflow-x-auto w-full max-w-5xl">
         <table className="min-w-full border-separate border-spacing-y-1 bg-white/10 backdrop-blur-md rounded-xl shadow-lg">
           <motion.thead variants={containerVariants}>
             <tr>
@@ -100,6 +116,11 @@ const Comparison = () => (
         }
         .neon-glass {
           box-shadow: 0 0 0 2px transparent, 0 0 16px 4px #BEC5A488, 0 0 32px 8px #BEC5A444;
+        }
+        @media (max-width: 768px) {
+          .neon-glass {
+            box-shadow: 0 0 0 1px transparent, 0 0 8px 2px #BEC5A488, 0 0 16px 4px #BEC5A444;
+          }
         }
       `}</style>
     </motion.div>

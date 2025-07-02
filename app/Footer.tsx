@@ -143,39 +143,39 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer className={`relative w-full bg-white/10 backdrop-blur-md neon-footer rounded-3xl ${merriweather.className}`} style={{margin: 0, padding: 0}}>
-      {/* Particle Canvas */}
+    <footer className={`relative w-full bg-white/10 backdrop-blur-md neon-footer rounded-t-3xl ${merriweather.className}`} style={{margin: 0, padding: 0}}>
+      {/* Particle Canvas - hidden on mobile for performance */}
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 w-full h-full pointer-events-none"
+        className="absolute inset-0 w-full h-full pointer-events-none hidden md:block"
         style={{ zIndex: 1 }}
       />
       
       {/* Content */}
-      <div className="relative z-10 w-full px-0 py-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 w-full px-6">
+      <div className="relative z-10 w-full px-0 py-6 md:py-8">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 w-full px-4 md:px-6">
           {/* Logo and Description */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-20 h-20 rounded-full shadow-lg bg-white/30 backdrop-blur-md flex items-center justify-center overflow-hidden">
-                <img src="/images/emblem.png" alt="Nuvidya Emblem" className="w-20 h-20 object-cover rounded-full" />
+            <div className="flex items-center gap-3 mb-3 md:mb-4">
+              <div className="w-16 h-16 md:w-20 md:h-20 rounded-full shadow-lg bg-white/30 backdrop-blur-md flex items-center justify-center overflow-hidden">
+                <img src="/images/emblem.png" alt="Nuvidya Emblem" className="w-16 h-16 md:w-20 md:h-20 object-cover rounded-full" />
               </div>
-              <h3 className="text-2xl font-bold text-[#3a2a13] tracking-wider">NUVIDYA</h3>
+              <h3 className="text-xl md:text-2xl font-bold text-[#3a2a13] tracking-wider">NUVIDYA</h3>
             </div>
-            <p className="text-[#3a2a13] text-sm max-w-md">
+            <p className="text-[#3a2a13] text-sm max-w-xs md:max-w-md">
               Where Ancient Wisdom Meets Modern Intelligence. 
               A peer-to-peer AI network designed to evolve through the people who use it.
             </p>
           </div>
 
           {/* Links */}
-          <div className="flex flex-col items-center md:items-end gap-4">
-            <div className="flex flex-wrap justify-center md:justify-end gap-6">
+          <div className="flex flex-col items-center md:items-end gap-3 md:gap-4">
+            <div className="flex flex-wrap justify-center md:justify-end gap-4 md:gap-6">
               <a href="#home" className="text-[#3a2a13] hover:text-[#3ecfff] transition-colors duration-200 text-sm font-medium">
                 Home
               </a>
-              <a href="#cores" className="text-[#3a2a13] hover:text-[#3ecfff] transition-colors duration-200 text-sm font-medium">
-                Cores
+              <a href="#features" className="text-[#3a2a13] hover:text-[#3ecfff] transition-colors duration-200 text-sm font-medium">
+                Features
               </a>
               <a href="#applications" className="text-[#3a2a13] hover:text-[#3ecfff] transition-colors duration-200 text-sm font-medium">
                 Applications
@@ -195,6 +195,14 @@ const Footer = () => {
             0 0 16px 4px #BEC5A488,
             0 0 32px 8px #BEC5A444,
             inset 0 0 32px #BEC5A41A;
+        }
+        @media (max-width: 768px) {
+          .neon-footer {
+            box-shadow: 
+              0 0 0 1px transparent,
+              0 0 8px 2px #BEC5A488,
+              0 0 16px 4px #BEC5A444;
+          }
         }
       `}</style>
     </footer>

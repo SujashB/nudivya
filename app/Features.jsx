@@ -103,10 +103,10 @@ const Features = () => {
       <motion.div
         key={core.title}
         variants={cardVariants}
-        className="w-full bg-white/10 backdrop-blur-md rounded-2xl p-5 flex flex-col items-center shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl text-center"
+        className="w-full bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-5 flex flex-col items-center shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl text-center"
       >
         <div 
-          className="w-14 h-14 flex items-center justify-center rounded-full text-2xl font-bold relative mb-3"
+          className="w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-full text-xl md:text-2xl font-bold relative mb-3"
           style={{
             background: `radial-gradient(circle at 30% 30%, ${core.color}, ${core.color}dd)`,
             boxShadow: `
@@ -127,7 +127,7 @@ const Features = () => {
           {core.icon}
         </div>
         <div>
-          <div className="text-xl font-bold text-[#7c5c2b]">{core.title}</div>
+          <div className="text-lg md:text-xl font-bold text-[#7c5c2b]">{core.title}</div>
           <div className="italic text-[#a67c3c] text-sm">{core.subtitle}</div>
         </div>
         
@@ -155,30 +155,32 @@ const Features = () => {
   };
 
   return (
-    <section id="features" className="w-full py-24 bg-white/5 backdrop-blur-sm">
-      <div className="max-w-5xl mx-auto px-6">
+    <section id="features" className="w-full py-16 md:py-24 bg-white/5 backdrop-blur-sm">
+      <div className="max-w-6xl mx-auto px-4 md:px-6">
         <motion.div 
-          className={`w-full flex flex-col items-center justify-center px-2 py-24 ${merriweather.className}`}
+          className={`w-full flex flex-col items-center justify-center py-8 md:py-16 ${merriweather.className}`}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
           variants={containerVariants}
         >
-          <h1 className="text-4xl md:text-5xl font-extrabold text-[#3a2a13] mb-16 text-center drop-shadow ancient-futuristic-title">7 New Agentic Cores, Inspired by Chakras, Powered by Logos</h1>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#3a2a13] mb-8 md:mb-16 text-center drop-shadow ancient-futuristic-title px-4">7 New Agentic Cores, Inspired by Chakras, Powered by Logos</h1>
           
-          <div className="w-[90vw] max-w-5xl flex flex-col items-center gap-8">
+          <div className="w-full max-w-5xl flex flex-col items-center gap-6 md:gap-8">
             {/* Top Row */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 w-full">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 w-full">
               {coreFeatures.slice(0, 3).map(renderCore)}
             </div>
 
             {/* Middle Row */}
-            <div className="flex justify-center w-full">
+            <div className="flex justify-center w-full max-w-md lg:max-w-none">
+              <div className="w-full lg:w-1/3">
               {renderCore(coreFeatures[3])}
+              </div>
             </div>
 
             {/* Bottom Row */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 w-full">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 w-full">
               {coreFeatures.slice(4, 7).map(renderCore)}
             </div>
           </div>

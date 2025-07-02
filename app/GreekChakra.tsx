@@ -14,16 +14,23 @@ const chakraData = [
 
 const GreekChakra = () => {
   const [hoveredChakra, setHoveredChakra] = useState<string | null>(null);
+  const [clickedChakra, setClickedChakra] = useState<string | null>(null);
+
+  const handleChakraClick = (chakraId: string) => {
+    if (clickedChakra === chakraId) {
+      setClickedChakra(null);
+    } else {
+      setClickedChakra(chakraId);
+    }
+  };
 
   return (
-    <div className="relative w-full max-w-sm mx-auto">
+    <div className="relative w-full max-w-xs sm:max-w-sm mx-auto">
       <img src="/images/Chakra_Body.png" alt="Chakra Body" className="w-full select-none pointer-events-none rounded-3xl" />
 
       {chakraData.map((chakra, index) => {
         const isEven = index % 2 === 0;
-        const labelPosition = isEven
-          ? { top: chakra.top, right: '105%' }
-          : { top: chakra.top, left: '105%' };
+        const showTooltip = hoveredChakra === chakra.id || clickedChakra === chakra.id;
 
         return (
           <div key={chakra.id} onMouseEnter={() => setHoveredChakra(chakra.id)} onMouseLeave={() => setHoveredChakra(null)}>
@@ -32,12 +39,14 @@ const GreekChakra = () => {
               style={{ 
                 top: chakra.top, 
                 left: chakra.left, 
-                width: chakra.size, 
-                height: chakra.size, 
+                width: `${chakra.size}px`, 
+                height: `${chakra.size}px`, 
                 background: `radial-gradient(circle, rgba(255,255,255,0.7) 30%, ${chakra.color} 70%)`, 
                 boxShadow: `0 0 15px 4px ${chakra.color}` 
               }}
               whileHover={{ scale: 1.4 }}
+              whileTap={{ scale: 1.3 }}
+              onClick={() => handleChakraClick(chakra.id)}
               animate={{ 
                 scale: [1, 1.08, 1], 
                 boxShadow: [`0 0 15px 4px ${chakra.color}`, `0 0 25px 8px ${chakra.color}`, `0 0 15px 4px ${chakra.color}`],
@@ -45,26 +54,35 @@ const GreekChakra = () => {
               }}
             />
             <AnimatePresence>
-              {hoveredChakra === chakra.id && (
+              {showTooltip && (
                 <motion.div
-                  className="absolute p-3 rounded-lg shadow-xl text-black w-48"
-                  style={{ ...labelPosition, backgroundColor: 'rgba(255, 253, 242, 0.85)', backdropFilter: 'blur(4px)' }}
+                  className={`
+                    fixed sm:absolute bottom-5 sm:bottom-auto left-1/2 sm:left-auto sm:right-auto
+                    -translate-x-1/2 sm:translate-x-0
+                    p-2 sm:p-3 rounded-lg shadow-xl text-black w-11/12 max-w-xs sm:w-48 z-50
+                    ${isEven ? 'sm:right-[105%] sm:left-auto' : 'sm:left-[105%] sm:right-auto'}
+                  `}
+                  style={{ 
+                    ...(typeof window !== 'undefined' && window.innerWidth >= 640 ? { top: chakra.top } : {}),
+                    backgroundColor: 'rgba(255, 253, 242, 0.95)', 
+                    backdropFilter: 'blur(4px)',
+                  }}
                   initial={{ opacity: 0, scale: 0.9, x: isEven ? 10 : -10 }}
                   animate={{ opacity: 1, scale: 1, x: 0 }}
                   exit={{ opacity: 0, scale: 0.9, x: isEven ? 10 : -10 }}
                   transition={{ duration: 0.2, ease: "easeOut" }}
+                  onClick={() => setClickedChakra(null)}
                 >
-                  <h3 className="font-bold text-sm text-[#3a2a13]">{chakra.name}</h3>
-                  <p className="text-xs text-[#6b4f2c]">{chakra.description}</p>
+                  <h3 className="font-bold text-sm sm:text-base text-[#3a2a13]">{chakra.name}</h3>
+                  <p className="text-xs sm:text-sm text-[#6b4f2c] mt-1">{chakra.description}</p>
                   <div 
-                    className="absolute w-3 h-3 transform"
-                    style={{ 
-                      backgroundColor: 'rgba(255, 253, 242, 0.85)',
-                      top: '50%', 
-                      ...(isEven ? { left: 'calc(100% - 6px)' } : { right: 'calc(100% - 6px)' }),
-                      transform: 'translateY(-50%) rotate(45deg)'
-                    }}
+                    className={`absolute w-3 h-3 transform hidden sm:block bg-[rgba(255,253,242,0.95)]
+                      top-1/2 -translate-y-1/2 rotate-45
+                      ${isEven ? 'left-[calc(100%-6px)]' : 'right-[calc(100%-6px)]'}
+                    `}
                   />
+                  {/* Mobile close hint */}
+                  <p className="text-xs text-[#a08663] mt-2 text-center sm:hidden">Tap to close</p>
                 </motion.div>
               )}
             </AnimatePresence>

@@ -46,20 +46,41 @@ const Applications = () => {
   return (
     <motion.div 
       id="applications"
-      className={`w-full flex flex-col items-center justify-center py-24 ${merriweather.className}`}
+      className={`w-full flex flex-col items-center justify-center py-16 md:py-24 px-4 ${merriweather.className}`}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
       transition={{ staggerChildren: 0.2 }}
     >
       <motion.h1 
-        className="text-4xl md:text-5xl font-extrabold text-[#3a2a13] mb-16 text-center drop-shadow ancient-futuristic-title"
+        className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#3a2a13] mb-8 md:mb-16 text-center drop-shadow ancient-futuristic-title px-4"
         variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7 } } }}
       >
         How People Use Nuvidya
       </motion.h1>
+      
+      {/* Mobile view - Grid */}
       <motion.div 
-        className="relative w-[700px] h-[700px] flex items-center justify-center mx-auto"
+        className="block lg:hidden w-full max-w-2xl"
+        variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } }}
+      >
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {useCases.map((useCase) => (
+            <motion.div
+              key={useCase.title}
+              className="bg-white/10 backdrop-blur-md rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-[#bfa76a]/20"
+              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
+            >
+              <div className="text-4xl mb-3 text-center">{useCase.icon}</div>
+              <h3 className="text-base font-bold text-[#3a2a13] text-center">{useCase.title}</h3>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Desktop view - Circular layout */}
+      <motion.div 
+        className="hidden lg:block relative w-[700px] h-[700px] items-center justify-center mx-auto"
         variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.15 } } }}
       >
         {/* Central Node */}
