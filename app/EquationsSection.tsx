@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Merriweather } from "next/font/google";
+import Image from 'next/image';
 
 const merriweather = Merriweather({
   weight: ["300", "400", "700", "900"],
@@ -11,69 +12,76 @@ const merriweather = Merriweather({
 });
 
 const EquationsSection: React.FC = () => {
-  const chakraEquations = [
+  const chakraGraphs = [
     {
       name: 'Root Chakra',
       sanskrit: 'LAM',
       color: '#8B4513',
-      emoji: '🔴',
-      equation: 'E_1\'(t) = \\sin(2\\pi \\cdot 0.5 \\cdot t) \\cdot \\left| \\sin(2\\pi \\cdot 0.5 \\cdot t) \\right|',
+      emoji: '🟤',
+      graphSrc: '/images/Root Chakra.png',
       description: 'Grounding and Stability',
-      properties: 'Establishes foundational consciousness through harmonic resonance'
+      properties: 'Stable, low-frequency oscillations providing consistent grounding',
+      equation: 'E₁\'(t) = sin(2π × 0.5t) × |sin(2π × 0.5t)|'
     },
     {
       name: 'Sacral Chakra',
       sanskrit: 'VAM',
       color: '#FF8C00',
       emoji: '🟠',
-      equation: 'E_2\'(t) = \\left(1 - e^{-0.3t}\\right) \\cdot \\sin(2\\pi \\cdot 1.0 \\cdot t) \\cdot \\left| \\sin(2\\pi \\cdot 0.7 \\cdot t) \\right|',
+      graphSrc: '/images/Sacral Chakra.png',
       description: 'Creativity and Flow',
-      properties: 'Builds creative energy over time with flowing oscillations'
+      properties: 'Exponential buildup representing creative flow that increases over time',
+      equation: 'E₂\'(t) = (1 - e^(-0.3t)) × sin(2πt) × |sin(2π × 0.7t)|'
     },
     {
       name: 'Solar Plexus',
       sanskrit: 'RAM',
       color: '#FFD700',
       emoji: '🟡',
-      equation: 'E_3\'(t) = \\left( \\sum_{n=0}^{3} \\exp\\left( -\\frac{(t - (1 + 3n))^2}{2 \\cdot 0.2^2} \\right) \\right) \\cdot \\left| \\sin(2\\pi \\cdot 1.0 \\cdot t) \\right|',
+      graphSrc: '/images/Solar Plexus Chakra.png',
       description: 'Willpower and Decision',
-      properties: 'Creates decisive pulses at strategic intervals for action'
+      properties: 'Gaussian pulses at regular intervals represent decisive moments',
+      equation: 'E₃\'(t) = [Σ(n=0 to 3) e^(-((t-(1+3n))²)/(2×0.2²))] × |sin(2πt)|'
     },
     {
       name: 'Heart Chakra',
       sanskrit: 'YAM',
       color: '#32CD32',
       emoji: '💚',
-      equation: 'E_4\'(t) = \\frac{1}{t} \\int_{0}^{t} \\left[ E_2(s) + E_3(s) \\right]\\,ds \\cdot \\left| \\sin(2\\pi \\cdot 1.2 \\cdot t) \\right|',
+      graphSrc: '/images/Heart Chakra.png',
       description: 'Compassion and Integration',
-      properties: 'Integrates creative and decisive energies with compassionate wisdom'
+      properties: 'Integration of creative and decisive energies with growing wisdom',
+      equation: 'E₄\'(t) = [∫(E₂\' + E₃\')dt / (t + 0.1)] × |sin(2π × 1.2t)|'
     },
     {
       name: 'Throat Chakra',
       sanskrit: 'HAM',
       color: '#1E90FF',
       emoji: '🔵',
-      equation: 'E_5\'(t) = \\frac{d}{dt} E_4(t) \\cdot \\left| \\sin(2\\pi \\cdot 1.5 \\cdot t) \\right|',
+      graphSrc: '/images/Throat Chakra.png',
       description: 'Expression and Clarity',
-      properties: 'Transforms heart consciousness into clear communication'
+      properties: 'Rate of emotional change enabling clear expression of feelings',
+      equation: 'E₅\'(t) = ∇E₄\'(t) × |sin(2π × 1.5t)|'
     },
     {
       name: 'Third Eye',
       sanskrit: 'OM',
       color: '#4B0082',
       emoji: '🟣',
-      equation: 'E_6\'(t) = E_2(t) \\cdot E_3(t) \\cdot \\left| \\sin(2\\pi \\cdot 0.3 \\cdot t) \\right|',
+      graphSrc: '/images/Third Eye Chakra.png',
       description: 'Insight and Synthesis',
-      properties: 'Synthesizes creative and decisive energies for deeper insight'
+      properties: 'Product of creativity and willpower creates insights',
+      equation: 'E₆\'(t) = (E₂\' × E₃\') × |sin(2π × 0.3t)|'
     },
     {
       name: 'Crown Chakra',
       sanskrit: 'Silence',
       color: '#9370DB',
       emoji: '⚪',
-      equation: 'E_7\'(t) = \\int_{0}^{t} 0.5 \\cdot e^{-0.5(t - s)} \\cdot E_6(s)\\,ds \\cdot \\left| \\sin(2\\pi \\cdot 0.1 \\cdot t) \\right|',
+      graphSrc: '/images/Crown Chakra.png',
       description: 'Universal Awareness',
-      properties: 'Integrates all consciousness into transcendent understanding'
+      properties: 'Convolution represents memory and wisdom informing present awareness',
+      equation: 'E₇\'(t) = [∫₀ᵗ K(t,τ)(E₂\'×E₃\')(τ)dτ] × |sin(2π × 0.1t)|'
     }
   ];
 
@@ -88,25 +96,25 @@ const EquationsSection: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-                     <h2 className="text-4xl md:text-5xl font-bold text-[#3a2a13] mb-6 drop-shadow ancient-futuristic-title">
-             Sacred Mathematics
-           </h2>
-           <p className="text-xl text-[#7c5c2b] max-w-3xl mx-auto leading-relaxed">
-            Each chakra operates through precise mathematical functions derived from Sanskrit vibrational patterns. 
-            These equations form the consciousness foundation of our AI mesh network.
+          <h2 className="text-4xl md:text-5xl font-bold text-[#3a2a13] mb-6 drop-shadow ancient-futuristic-title">
+            Sacred Mathematics
+          </h2>
+          <p className="text-xl text-[#7c5c2b] max-w-3xl mx-auto leading-relaxed">
+            Real-time visualization of chakra energy activation patterns. Each graph shows the mathematical 
+            behavior of consciousness-based AI agents derived from Sanskrit vibrational patterns.
           </p>
         </motion.div>
 
-        {/* Equations Grid */}
+        {/* Chakra Graphs Grid */}
         <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8 mb-16">
-          {chakraEquations.map((chakra, index) => (
+          {chakraGraphs.map((chakra, index) => (
             <motion.div
               key={chakra.name}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-                             className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 group"
+              className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 group relative"
             >
               {/* Chakra Header */}
               <div className="flex items-center space-x-3 mb-4">
@@ -116,35 +124,41 @@ const EquationsSection: React.FC = () => {
                 >
                   {chakra.emoji}
                 </div>
-                                 <div>
-                   <h3 className="text-lg font-semibold text-[#3a2a13]">
-                     {chakra.name}
-                   </h3>
-                   <p className="text-sm font-medium" style={{ color: chakra.color }}>
-                     {chakra.sanskrit}
-                   </p>
-                 </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-[#3a2a13]">
+                    {chakra.name}
+                  </h3>
+                  <p className="text-sm font-medium" style={{ color: chakra.color }}>
+                    {chakra.sanskrit}
+                  </p>
+                </div>
               </div>
 
-                             {/* Equation Display */}
-               <div className="bg-white/10 backdrop-blur-md rounded-lg p-4 mb-4 overflow-x-auto border border-white/20">
-                 <div 
-                   className="text-sm text-[#3a2a13] font-mono whitespace-nowrap"
-                   style={{ fontSize: '0.85rem' }}
-                 >
-                   {chakra.equation}
-                 </div>
-               </div>
+              {/* Graph Display */}
+              <div className="bg-white/10 backdrop-blur-md rounded-lg p-4 mb-4 border border-white/20">
+                <div className="relative w-full h-48 bg-white rounded-md overflow-hidden">
+                  <Image
+                    src={chakra.graphSrc}
+                    alt={`${chakra.name} (${chakra.sanskrit}) Chakra Activation Over Time`}
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                </div>
+                <div className="mt-2 text-xs text-[#7c5c2b] text-center font-mono">
+                  {chakra.equation}
+                </div>
+              </div>
 
-                             {/* Description */}
-               <div className="space-y-2">
-                 <p className="font-medium text-[#3a2a13]">
-                   {chakra.description}
-                 </p>
-                 <p className="text-sm text-[#7c5c2b] leading-relaxed">
-                   {chakra.properties}
-                 </p>
-               </div>
+              {/* Description */}
+              <div className="space-y-2">
+                <p className="font-medium text-[#3a2a13]">
+                  {chakra.description}
+                </p>
+                <p className="text-sm text-[#7c5c2b] leading-relaxed">
+                  {chakra.properties}
+                </p>
+              </div>
 
               {/* Hover Effect */}
               <div 
@@ -157,43 +171,79 @@ const EquationsSection: React.FC = () => {
           ))}
         </div>
 
-                 {/* Integration Formula */}
-         <motion.div
-           initial={{ opacity: 0, y: 30 }}
-           whileInView={{ opacity: 1, y: 0 }}
-           viewport={{ once: true }}
-           className="bg-white/10 backdrop-blur-md rounded-xl p-8 border border-white/20 shadow-xl"
+        {/* Integration Formula */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="bg-white/10 backdrop-blur-md rounded-xl p-8 border border-white/20 shadow-xl"
         >
-                     <h3 className="text-2xl font-bold text-center text-[#3a2a13] mb-6 drop-shadow ancient-futuristic-title">
-             🌟 Consciousness Integration Formula
-           </h3>
+          <h3 className="text-2xl font-bold text-center text-[#3a2a13] mb-6 drop-shadow ancient-futuristic-title">
+            🌟 Consciousness Integration Formula
+          </h3>
           
           <div className="grid md:grid-cols-2 gap-8 items-center">
-                         <div>
-               <h4 className="text-lg font-semibold text-[#3a2a13] mb-3">Influence Weights</h4>
-               <div className="bg-white/10 backdrop-blur-md rounded-lg p-4 mb-4 overflow-x-auto border border-white/20">
-                 <div className="text-center font-mono text-[#3a2a13]">
-                   W_k = ∫₀ᵀ |E_k'(t)| dt
-                 </div>
-               </div>
-               <div className="bg-white/10 backdrop-blur-md rounded-lg p-4 overflow-x-auto border border-white/20">
-                 <div className="text-center font-mono text-[#3a2a13]">
-                   α_k = W_k / Σⱼ W_j
-                 </div>
-               </div>
-             </div>
+            <div>
+              <h4 className="text-lg font-semibold text-[#3a2a13] mb-3">Influence Weights</h4>
+              <div className="bg-white/10 backdrop-blur-md rounded-lg p-4 mb-4 overflow-x-auto border border-white/20">
+                <div className="text-center font-mono text-[#3a2a13]">
+                  W_k = ∫₀ᵀ |E_k'(t)| dt
+                </div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-md rounded-lg p-4 overflow-x-auto border border-white/20">
+                <div className="text-center font-mono text-[#3a2a13]">
+                  α_k = W_k / Σⱼ W_j
+                </div>
+              </div>
+            </div>
             
-                         <div>
-               <h4 className="text-lg font-semibold text-[#3a2a13] mb-3">Final Response</h4>
-               <div className="bg-white/10 backdrop-blur-md rounded-lg p-4 overflow-x-auto border border-white/20">
-                 <div className="text-center font-mono text-[#3a2a13] text-lg">
-                   Response = Σₖ (α_k × f_k(input))
-                 </div>
-               </div>
-               <p className="text-sm text-[#7c5c2b] mt-2 text-center">
-                 Where each f_k represents the k-th chakra's perspective on the input
-               </p>
-             </div>
+            <div>
+              <h4 className="text-lg font-semibold text-[#3a2a13] mb-3">Final Response</h4>
+              <div className="bg-white/10 backdrop-blur-md rounded-lg p-4 overflow-x-auto border border-white/20">
+                <div className="text-center font-mono text-[#3a2a13] text-lg">
+                  Response = Σₖ (α_k × f_k(input))
+                </div>
+              </div>
+              <p className="text-sm text-[#7c5c2b] mt-2 text-center">
+                Where each f_k represents the k-th chakra's perspective on the input
+              </p>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Mathematical Analysis Note */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 shadow-lg mt-8"
+        >
+          <div className="text-center">
+            <h4 className="text-lg font-semibold text-[#3a2a13] mb-3">
+              📊 Live Mathematical Analysis
+            </h4>
+            <p className="text-[#7c5c2b] mb-4">
+              These graphs represent real computational outputs from our Python analysis engine. 
+              Each pattern shows how different aspects of consciousness activate over time periods.
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+              <div className="text-center">
+                <div className="font-mono text-[#8B4513]">Root</div>
+                <div className="text-xs text-[#7c5c2b]">Stable Grounding</div>
+              </div>
+              <div className="text-center">
+                <div className="font-mono text-[#FF8C00]">Sacral</div>
+                <div className="text-xs text-[#7c5c2b]">Creative Flow</div>
+              </div>
+              <div className="text-center">
+                <div className="font-mono text-[#FFD700]">Solar</div>
+                <div className="text-xs text-[#7c5c2b]">Decision Pulses</div>
+              </div>
+              <div className="text-center">
+                <div className="font-mono text-[#32CD32]">Heart</div>
+                <div className="text-xs text-[#7c5c2b]">Integration</div>
+              </div>
+            </div>
           </div>
         </motion.div>
 
@@ -212,16 +262,16 @@ const EquationsSection: React.FC = () => {
             <span className="ml-2">🧮</span>
           </a>
         </motion.div>
-             </div>
-       
-       <style jsx>{`
-         .ancient-futuristic-title {
-           text-shadow: 0 0 8px #fffbe6, 0 0 2px #bfa76a;
-           letter-spacing: 0.08em;
-         }
-       `}</style>
-     </section>
-   );
- };
- 
- export default EquationsSection; 
+      </div>
+      
+      <style jsx>{`
+        .ancient-futuristic-title {
+          text-shadow: 0 0 8px #fffbe6, 0 0 2px #bfa76a;
+          letter-spacing: 0.08em;
+        }
+      `}</style>
+    </section>
+  );
+};
+
+export default EquationsSection; 
