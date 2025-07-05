@@ -8,7 +8,6 @@ const navItems = [
   { label: "Comparison", href: "#comparison" },
   { label: "Features", href: "#features" },
   { label: "Demo", href: "#demo" },
-  { label: "Applications", href: "#applications" },
   { label: "Invite", href: "#invite" },
 ];
 
@@ -25,15 +24,15 @@ const Navbar = () => {
 
   return (
   <nav
-    className="fixed top-0 left-0 w-full z-50 backdrop-blur-md shadow-lg neon-navbar-border"
+    className="static w-full z-50 backdrop-blur-md shadow-lg"
     style={{
       fontFamily: 'Merriweather, serif',
       letterSpacing: '0.04em',
-      boxShadow: '0 2px 16px 0 rgba(191, 167, 106, 0.12)',
-      backgroundImage: 'url(/images/navbar_light_parchment.png)',
-      backgroundSize: 'cover',
-      backgroundRepeat: 'repeat',
-      backgroundPosition: 'center',
+      background: 'linear-gradient(135deg, #f5ecd7 0%, #e6d7bb 100%)',
+      borderRadius: '12px',
+      border: '2px solid #d4af37',
+      margin: '16px',
+      boxShadow: '0 4px 20px rgba(212, 175, 55, 0.3)',
     }}
   >
     <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-2">

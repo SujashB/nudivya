@@ -30,9 +30,9 @@ const Invite = () => {
           <motion.div
             variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.2 } } }}
           >
-            <button className="bg-[#f4e9d8] text-[#3a2a13] font-bold py-3 px-6 md:px-8 rounded-lg shadow-md border border-[#d1c0a8] hover:bg-[#e9dccb] transition-colors duration-300 text-sm md:text-base">
+            <a href="#demo" className="inline-block bg-[#f4e9d8] text-[#3a2a13] font-bold py-3 px-6 md:px-8 rounded-lg shadow-md border border-[#d1c0a8] hover:bg-[#e9dccb] transition-colors duration-300 text-sm md:text-base">
               Get Started
-            </button>
+            </a>
           </motion.div>
         </motion.div>
 

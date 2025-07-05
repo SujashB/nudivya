@@ -8,13 +8,14 @@ import Features from "./Features";
 import FeaturesGrid from "./FeaturesGrid";
 import EquationsSection from "./EquationsSection";
 import Explanation from "./Explanation";
-import Comparison from "./comparison";
-import Applications from "./Applications";
+import UseCases from "./comparison";
+
 import Demo from "./Demo";
 import Footer from "./Footer";
 import Invite from "./Invite";
 import Spacer from "./Spacer";
 import ChakraDemo from "./ChakraDemo";
+import MathematicalFramework from "./MathematicalFramework";
 
 const merriweather = Merriweather({
   weight: ["300", "400", "700", "900"],
@@ -27,7 +28,7 @@ export default function Home() {
     <div className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-auto">
       <Navbar />
       <ParallaxBackground />
-      <div style={{ position: 'relative', zIndex: 2, width: '100%' }} className="pt-16 md:pt-20">
+      <div style={{ position: 'relative', zIndex: 2, width: '100%' }}>
         <Hero />
         <Spacer imageName="spacer_sun.png" />
         <FeaturesGrid />
@@ -38,7 +39,7 @@ export default function Home() {
           <EquationsSection />
         </div>
         <Spacer imageName="spacer_sun.png" />
-        <Comparison />
+        <UseCases />
         <Spacer imageName="spacer_lambda.png" />
         <Features />
         <Spacer imageName="spacer.png" />
@@ -46,7 +47,9 @@ export default function Home() {
         <Spacer imageName="spacer_rho.png" />
         <ChakraDemo />
         <Spacer imageName="spacer_sun.png" />
-        <Applications />
+        <MathematicalFramework />
+        <Spacer imageName="spacer_lambda.png" />
+  
         <Spacer imageName="spacer_lambda.png" />
         <Invite />
         <Spacer imageName="spacer_rho.png" />

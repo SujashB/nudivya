@@ -86,7 +86,7 @@ body {
 /* Mobile optimization for parallax */
 @media (max-width: 768px) {
   .parallax-bg {
-    background-attachment: scroll; /* Disable fixed background on mobile for better performance */
+    background-attachment: scroll;
     height: 100vh;
   }
 }

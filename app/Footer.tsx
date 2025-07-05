@@ -177,9 +177,6 @@ const Footer = () => {
               <a href="#features" className="text-[#3a2a13] hover:text-[#3ecfff] transition-colors duration-200 text-sm font-medium">
                 Features
               </a>
-              <a href="#applications" className="text-[#3a2a13] hover:text-[#3ecfff] transition-colors duration-200 text-sm font-medium">
-                Applications
-              </a>
             </div>
             <div className="text-[#3a2a13] text-xs text-center md:text-right">
               © 2025 Nuvidya. All rights reserved.
