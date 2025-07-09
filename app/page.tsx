@@ -15,7 +15,7 @@ import Footer from "./Footer";
 import Invite from "./Invite";
 import Spacer from "./Spacer";
 import ChakraDemo from "./ChakraDemo";
-import MathematicalFramework from "./MathematicalFramework";
+import FAQ from "./FAQ";
 
 const merriweather = Merriweather({
   weight: ["300", "400", "700", "900"],
@@ -47,9 +47,7 @@ export default function Home() {
         <Spacer imageName="spacer_rho.png" />
         <ChakraDemo />
         <Spacer imageName="spacer_sun.png" />
-        <MathematicalFramework />
-        <Spacer imageName="spacer_lambda.png" />
-  
+        <FAQ />
         <Spacer imageName="spacer_lambda.png" />
         <Invite />
         <Spacer imageName="spacer_rho.png" />

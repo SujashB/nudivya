@@ -10,59 +10,59 @@ const merriweather = Merriweather({
 
 const coreFeatures = [
   {
-    icon: 'M',
-    title: 'Mularebus',
-    subtitle: 'Your system check-in.',
-    desc: `Watches over your device's health, speed, and network strength—then decides how much AI power should be used so nothing slows down or overheats.`,
-    color: '#FF3B30',
+    icon: '🟤',
+    title: 'Root Chakra',
+    subtitle: 'Grounding & Stability',
+    desc: `The foundation of the system that provides stability and security. Validates information, checks for logical consistency, and ensures all responses are grounded in practical reality.`,
+    color: '#8B4513',
     essence: 'Grounds Nuvidya in reality—rooting all insight in the present.'
   },
   {
-    icon: 'V',
-    title: 'Svathymos',
-    subtitle: 'The emotional translator.',
-    desc: `Understands how you feel and what matters to you. Makes sure the AI responds in a way that fits your mood, motivation, and personal values.`,
-    color: '#FF9500',
+    icon: '🟠',
+    title: 'Sacral Chakra',
+    subtitle: 'Creativity & Flow',
+    desc: `The creative center that generates innovative ideas and adaptive solutions. Thinks outside the box, embraces change, and brings flowing, organic responses to challenges.`,
+    color: '#FF8C00',
     essence: 'Sparks creativity and flow—where ideas begin to move.'
   },
   {
-    icon: 'Λ',
-    title: 'VākSopher',
-    subtitle: 'The emmoneun voice',
-    desc: `Takes thoughts, images, or ideas and turns them into words—like a digital tongue that's fluent in your way of speaking, writing, or sharing.`,
-    color: '#007AFF',
-    essence: 'Gives Nuvidya a voice—turning thoughts into natural communication.'
+    icon: '🟡',
+    title: 'Solar Plexus Chakra',
+    subtitle: 'Willpower & Decision',
+    desc: `The center of personal power and decision-making. Provides decisive recommendations, prioritizes actions, and ensures confident, action-oriented responses.`,
+    color: '#FFD700',
+    essence: 'Drives action and confidence—powering decisive responses.'
   },
   {
-    icon: 'Σ',
-    title: 'AjhaPhrōnésis',
-    subtitle: 'The memory keeper',
-    desc: `Stores how the system made decisions so they can't be tampered with later. It's your AI's brain journal—secure, verifiable, and unchangeable.`,
-    color: '#AF52DE',
-    essence: 'Preserves wisdom—keeping every insight safe and true.'
-  },
-  {
-    icon: 'A',
-    title: 'Anāhsophia',
-    subtitle: 'The wisdom filter.',
-    desc: `Before answering, it asks: "Is this kind? Is this ethical? Is this true?" It's like a conscience that blends gut instinct with what's right.`,
-    color: '#34C759',
+    icon: '💚',
+    title: 'Heart Chakra',
+    subtitle: 'Compassion & Integration',
+    desc: `The emotional center that considers impact on relationships and well-being. Integrates empathy into responses and ensures all interactions are kind and emotionally intelligent.`,
+    color: '#32CD32',
     essence: 'Filters wisdom through the heart—ensuring every response is kind and true.'
   },
   {
-    icon: 'Θ',
-    title: 'VisūNoesis',
-    subtitle: 'The synthesizer',
-    desc: `Pulls from different sources—news, code, facts—and combines them in a way that makes sense. It sees patterns and helps you see the full picture.`,
-    color: '#5856D6',
+    icon: '🔵',
+    title: 'Throat Chakra',
+    subtitle: 'Expression & Clarity',
+    desc: `The communication center that ensures clear, authentic expression. Transforms complex ideas into accessible language and maintains transparency in all interactions.`,
+    color: '#1E90FF',
+    essence: 'Gives Nuvidya a voice—turning thoughts into natural communication.'
+  },
+  {
+    icon: '🟣',
+    title: 'Third Eye Chakra',
+    subtitle: 'Insight & Synthesis',
+    desc: `The center of intuition and deep understanding. Recognizes patterns, synthesizes complex information, and provides insights that go beyond surface-level analysis.`,
+    color: '#4B0082',
     essence: 'Sees beyond the surface—connecting dots across knowledge.'
   },
   {
-    icon: 'Φ',
-    title: 'SahaPhrónesis',
-    subtitle: 'The trust gate.',
-    desc: `Makes sure every AI decision is trackable and can be checked by others. Think of it like a public ledger that builds trust—no hidden tricks.`,
-    color: '#5AC8FA',
+    icon: '🟪',
+    title: 'Crown Chakra',
+    subtitle: 'Universal Awareness',
+    desc: `The highest center of consciousness that integrates all perspectives. Provides meta-cognitive oversight, wisdom, and connection to universal understanding.`,
+    color: '#9370DB',
     essence: 'Builds bridges of trust—making every step transparent.'
   }
 ];
